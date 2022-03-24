@@ -3,9 +3,20 @@
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check that all adjacent items are in order, return early if so
+    DONE: Running time: O(n), because the worst-case scenario would require 
+    iterating through the entire array once.
+    DONE: Memory usage: O(n), because the worst-case scenario would require 
+    iterating through the entire array once."""
+    # DONE: Check that all adjacent items are in order, return early if so
+    for i in range(len(items) - 1):
+        if items[i] > items[i+1]:
+            return False
+    return True
+
+unordered_items = [3, 15, 4, 7, 20, 6, 18, 11, 9, 7] # Should return False
+ordered_items = [3, 4, 6, 7, 7, 9, 11, 18, 20] # Should return True
+print(is_sorted(unordered_items))
+print(is_sorted(ordered_items))
 
 
 def bubble_sort(items):
