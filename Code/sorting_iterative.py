@@ -22,10 +22,18 @@ print(is_sorted(ordered_items))
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
+    DONE: Running time: O(n) if already sorted (since a single pass through entire array is required to check),
+    and O(n^2) if the array is in reverse-order (n elements must be bubbled up n steps).
+    DONE: Memory usage: O(n), since the input array is modified in-place."""
+    # DONE: Repeat until all items are in sorted order
+    sort_flag = True
+    while sort_flag:
+        # DONE: Swap adjacent items that are out of order
+        for i in range(len(items) - 1):
+            if items[i] > items[i + 1]:
+                items[i], items[i + 1] = items[i + 1], items[i]
+                sort_flag = False
+    return items
 
 
 def selection_sort(items):
