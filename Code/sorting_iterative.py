@@ -5,8 +5,7 @@ def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
     DONE: Running time: O(n), because the worst-case scenario would require 
     iterating through the entire array once.
-    DONE: Memory usage: O(n), because the worst-case scenario would require 
-    iterating through the entire array once."""
+    DONE: Memory usage: O(1), because the input array is modified in-place (if at all)."""
     # DONE: Check that all adjacent items are in order, return early if so
     for i in range(len(items) - 1):
         if items[i] > items[i+1]:
@@ -22,18 +21,19 @@ print(is_sorted(ordered_items))
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order.
-    DONE: Running time: O(n) if already sorted (since a single pass through entire array is required to check),
-    and O(n^2) if the array is in reverse-order (n elements must be bubbled up n steps).
-    DONE: Memory usage: O(n), since the input array is modified in-place."""
+    DONE: Running time: O(n^2), since the algorithm iterates through n items n times each.
+    DONE: Memory usage: O(1), since the input array is modified in-place."""
+    if len(items) == 1 or is_sorted(items):
+        return items
     # DONE: Repeat until all items are in sorted order
-    sort_flag = True
-    while sort_flag:
+    for _ in range(len(items)):
         # DONE: Swap adjacent items that are out of order
-        for i in range(len(items) - 1):
-            if items[i] > items[i + 1]:
-                items[i], items[i + 1] = items[i + 1], items[i]
-                sort_flag = False
+        for j in range(len(items) - 1):
+            if items[j] > items[j + 1]:
+                items[j], items[j + 1] = items[j + 1], items[j]
     return items
+
+print(bubble_sort(unordered_items))
 
 
 def selection_sort(items):
