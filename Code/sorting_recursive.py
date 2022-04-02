@@ -37,11 +37,10 @@ def split_sort_merge(items):
     first_half = items[:mid_index]
     second_half = items[mid_index:]
     first_half.sort()
-    print(first_half)
     second_half.sort()
-    print(second_half)
     sorted_list = merge(first_half, second_half)
-    return sorted_list
+    for i in range(len(items)):
+        items[i] = sorted_list[i]
 
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
