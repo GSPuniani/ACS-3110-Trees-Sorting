@@ -23,8 +23,6 @@ def bubble_sort(items):
     repeating until all items are in sorted order.
     DONE: Running time: O(n^2), since the algorithm iterates through n items n times each.
     DONE: Memory usage: O(1), since the input array is modified in-place."""
-    if len(items) == 1 or is_sorted(items):
-        return items
     # DONE: Repeat until all items are in sorted order
     for i in range(len(items) - 1):
         # DONE: Swap adjacent items that are out of order
@@ -54,8 +52,6 @@ def insertion_sort(items):
     order in front of items, and repeating until all items are in order.
     DONE: Running time: O(n^2), since the algorithm iterates through n items n times each.
     DONE: Memory usage: O(1), since the input array is modified in-place."""
-    if len(items) <= 1:
-        return
     # DONE: Repeat until all items are in sorted order
     for i in range(1, len(items)):
         for j in range(i, len(items)):

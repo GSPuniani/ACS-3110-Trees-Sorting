@@ -28,6 +28,21 @@ def merge(items1, items2):
 # list2 = [3, 6, 9, 12, 15, 18]
 # print(merge(list1, list2))
 
+def split_sort_merge(items):
+    """Sort given items by splitting list into two approximately equal halves,
+    sorting each by any non-recursive technique, and merging results into a list in sorted order.
+    TODO: Running time: ??? Why and under what conditions?
+    TODO: Memory usage: ??? Why and under what conditions?"""
+    mid_index = len(items) // 2
+    first_half = items[:mid_index]
+    second_half = items[mid_index:]
+    first_half.sort()
+    print(first_half)
+    second_half.sort()
+    print(second_half)
+    sorted_list = merge(first_half, second_half)
+    return sorted_list
+
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order.
