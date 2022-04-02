@@ -5,10 +5,28 @@ def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
     TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until one list is empty
-    # TODO: Find minimum item in both lists and append it to new list
-    # TODO: Append remaining items in non-empty list to new list
+    TODO: Memory usage: ??? Why and under what conditions?""" 
+    sorted_list = []
+    i, j = 0, 0
+    # DONE: Repeat until one list is empty
+    while i < len(items1) and j < len(items2):
+        # DONE: Find minimum item in both lists and append it to new list
+        if items1[i] <= items2[j]:
+            sorted_list.append(items1[i])
+            i += 1
+        else:
+            sorted_list.append(items2[j])
+            j += 1
+    # DONE: Append remaining items in non-empty list to new list
+    if i < len(items1):
+        sorted_list.extend(items1[i:])
+    elif j < len(items2):
+        sorted_list.extend(items2[j:])
+    return sorted_list
+
+# list1 = [1, 4, 7, 9, 10, 14]
+# list2 = [3, 6, 9, 12, 15, 18]
+# print(merge(list1, list2))
 
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
