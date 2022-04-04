@@ -4,8 +4,8 @@
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?""" 
+    DONE: Running time: O(n), since the lists are iterated over and merged in linear time.
+    DONE: Memory usage: O(n), since an auxiliary list is created.""" 
     sorted_list = []
     i, j = 0, 0
     # DONE: Repeat until one list is empty
@@ -32,8 +32,8 @@ def merge(items1, items2):
 def split_sort_merge(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each by any non-recursive technique, and merging results into a list in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    DONE: Running time: O(n log n), since that is the time complexity of Timsort (used for both halves).
+    DONE: Memory usage: O(n), since an auxiliary list is created."""
     mid_index = len(items) // 2
     first_half = items[:mid_index]
     second_half = items[mid_index:]
@@ -46,8 +46,8 @@ def split_sort_merge(items):
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    DONE: Running time: O(n log n), since the array is recursively split into halves and then merged in linear time.
+    DONE: Memory usage: O(n), since an auxiliary list is created."""
     # DONE: Check if list is so small it's already sorted (base case)
     if len(items) == 1:
         return items
@@ -66,32 +66,32 @@ def merge_sort(items):
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (TODO: document your method here) from
+    `[low...high]` by choosing a pivot (the right-most element) from
     that range, moving pivot into index `p`, items less than pivot into range
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # DONE: Choose a pivot any way and document your method in docstring above
+    DONE: Running time: O(n), since each element is compared to the pivot.
+    DONE: Memory usage: O(1), since the items are sorted in place."""
+    # DONE: Choose a pivot by selecting the right-most element
     pivot = items[high]
-    i = low
+    p = low
     # DONE: Loop through all items in range [low...high]
     for j in range(low, high):
         # DONE: Move items less than pivot into front of range [low...p-1]
         # DONE: Move items greater than pivot into back of range [p+1...high]
         if items[j] <= pivot:
-            items[i], items[j] = items[j], items[i]
-            i += 1
+            items[p], items[j] = items[j], items[p]
+            p += 1
     # DONE: Move pivot item into final position [p] and return index p
-    items[i], items[high] = items[high], items[i]
-    return i
+    items[p], items[high] = items[high], items[p]
+    return p
 
 
 
 def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
-    DONE: Best case running time: O(n log n), where n is the number of items in the list. The best case occurs when the list is already sorted.
-    DONE: Worst case running time: O(n^2), where n is the number of items in the list. The worst case occurs when the list is in reverse order.
+    DONE: Best case running time: O(n log n). The best case occurs when the list is already sorted.
+    DONE: Worst case running time: O(n^2). The worst case occurs when the list is in reverse order.
     DONE: Memory usage: O(1), since the items are sorted in place."""
     # DONE: Check if high and low range bounds have default values (not given)
     if low is None:
