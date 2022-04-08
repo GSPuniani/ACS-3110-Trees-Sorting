@@ -64,6 +64,19 @@ def merge_sort(items):
         items[i] = sorted_list[i]
 
 
+def naive_partition(items):
+    """Return index `p` without in-place partitioning (use out-of-place arrays)."""
+    pivot = items[0]
+    lower_array = []
+    higher_array = []
+    for item in items:
+        if item <= pivot:
+            lower_array.append(item)
+        else:
+            higher_array.append(item)
+    return lower_array, higher_array
+
+
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
     `[low...high]` by choosing a pivot (the right-most element) from
