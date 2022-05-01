@@ -35,11 +35,22 @@ class PrefixTree:
 
     def is_empty(self):
         """Return True if this prefix tree is empty (contains no strings)."""
-        # TODO
+        # DONE
+        return self.size == 0
 
     def contains(self, string):
         """Return True if this prefix tree contains the given string."""
-        # TODO
+        # DONE
+        # Set Prefix Tree node pointer to first character
+        pt_node = self.root.children[string[0]]
+        # Iterate through each character of input string
+        for i in range(len(string - 1)):
+            # Return False if next char in string is not in current node's children
+            if string[i+1] not in pt_node.children:
+                return False
+            else:
+                pt_node = pt_node.children[string[i]]
+        return True
 
     def insert(self, string):
         """Insert the given string into this prefix tree."""
