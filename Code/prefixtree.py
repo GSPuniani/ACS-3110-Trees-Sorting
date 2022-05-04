@@ -36,37 +36,70 @@ class PrefixTree:
     def is_empty(self):
         """Return True if this prefix tree is empty (contains no strings)."""
         # DONE
+        # Time complexity: O(1), since the method simply checks the value of an attribute
         return self.size == 0
 
     def contains(self, string):
         """Return True if this prefix tree contains the given string."""
         # DONE
+        # Time complexity: O(n), where n is the size of the string, since the entire string... 
+        # ...must be traversed in the worst-case
         # Set Prefix Tree node pointer to first character
         pt_node = self.root.children[string[0]]
         # Iterate through each character of input string
-        for i in range(len(string - 1)):
+        for char in string:
             # Return False if next char in string is not in current node's children
-            if string[i+1] not in pt_node.children:
+            if not pt_node.has_child(char):
                 return False
             else:
-                pt_node = pt_node.children[string[i]]
-        return True
+                pt_node = pt_node.children[char]
+        # Return True of string is present and the last node is terminal
+        return pt_node.terminal
 
     def insert(self, string):
         """Insert the given string into this prefix tree."""
-        # TODO
+        # DONE
+        # Time complexity: O(n), where n is the size of the string, since the entire string... 
+        # ...must be traversed/added in the worst-case (adding adds additional but negligible constant time)
+        pt_node = self.root
+        # Iterate through each character of input string
+        for char in string:
+            if not pt_node.has_child(char):
+                # Increment the size count
+                self.size += 1
+                # Add a new node with the character as a child
+                new_node = PrefixTreeNode(char)
+                pt_node.add_child(char, new_node)
+            # Iterate to existing or newly created child
+            pt_node = pt_node.children[char]
+        # The last node is the terminal node
+        pt_node.terminal = True
 
     def _find_node(self, string):
         """Return a pair containing the deepest node in this prefix tree that
         matches the longest prefix of the given string and the node's depth.
         The depth returned is equal to the number of prefix characters matched.
         Search is done iteratively with a loop starting from the root node."""
+        # Time complexity: O(n), where n is the size of the string, since the entire string... 
+        # ...must be traversed in the worst-case
         # Match the empty string
         if len(string) == 0:
             return self.root, 0
         # Start with the root node
         node = self.root
-        # TODO
+        # DONE
+        # Keep count of depth
+        depth = 0
+        # Iterate through each character of input string
+        for char in string:
+            # Return node and depth if next char in string is not in current node's children
+            if not node.has_child(char):
+                return node, depth
+            else:
+                node = node.children[char]
+                depth += 1
+        # Return node and depth at end of string
+        return node, depth
 
     def complete(self, prefix):
         """Return a list of all strings stored in this prefix tree that start
