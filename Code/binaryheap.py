@@ -123,7 +123,10 @@ class BinaryMinHeap(object):
         # DONE: Determine which child item to compare this node's item to
         child_index = 0
         if 0 <= left_index <= self._last_index() and 0 <= right_index <= self._last_index():
-            child_index = left_index if self.items[left_index] < self.items[right_index] else right_index
+            if self.items[left_index] < self.items[right_index]:
+                child_index = left_index
+            else:
+                child_index = right_index
         elif not 0 <= right_index <= self._last_index():
             child_index = left_index
         else:
