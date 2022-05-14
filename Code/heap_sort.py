@@ -4,8 +4,10 @@ from binaryheap import BinaryMinHeap
 
 def heap_sort(items):
     """Sort given items by using a binary heap structure for ordering.
-    DONE: Running time: O(n^2), since the algorithm iterates through n items n times each.
-    DONE: Memory usage: O(1), since the input array is modified in-place."""
+    DONE: Running time: O(n log n), since the algorithm has to bubbled down every element after each min removal, 
+    which is log n time, and building the heap structure potentially requires bubbling up every insertion 
+    (which is also log n time).
+    DONE: Memory usage: O(1), since the input array is modified in-place (theoretically)."""
     # Build a binary min heap with the given items
     min_heap = BinaryMinHeap(items)
     sorted_list = []
