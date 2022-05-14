@@ -5,7 +5,7 @@ from sorting_iterative import is_sorted, bubble_sort, selection_sort, insertion_
 from sorting_recursive import merge_sort, quick_sort
 from heap_sort import heap_sort
 
-sort = heap_sort
+sort = quick_sort
 
 def test_is_sorted_on_sorted_integers():
     # Positive test cases (examples) with lists of sorted integers

@@ -1,6 +1,9 @@
 #!python
 
 
+# ------------------------CHALLENGE 2------------------------
+
+
 def merge(items1, items2):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
@@ -64,6 +67,10 @@ def merge_sort(items):
         items[i] = sorted_list[i]
 
 
+
+# ------------------------CHALLENGE 3------------------------
+
+# Class Exercise - NOT USED FOR ACTUAL IMPLEMENTATION
 def naive_partition(items):
     """Return index `p` without in-place partitioning (use out-of-place arrays)."""
     pivot = items[0]
@@ -88,11 +95,11 @@ def partition(items, low, high):
     pivot = items[high]
     p = low
     # DONE: Loop through all items in range [low...high]
-    for j in range(low, high):
+    for i in range(low, high):
         # DONE: Move items less than pivot into front of range [low...p-1]
         # DONE: Move items greater than pivot into back of range [p+1...high]
-        if items[j] <= pivot:
-            items[p], items[j] = items[j], items[p]
+        if items[i] <= pivot:
+            items[p], items[i] = items[i], items[p]
             p += 1
     # DONE: Move pivot item into final position [p] and return index p
     items[p], items[high] = items[high], items[p]
@@ -103,16 +110,18 @@ def partition(items, low, high):
 def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
-    DONE: Best case running time: O(n log n). The best case occurs when the list is already sorted.
-    DONE: Worst case running time: O(n^2). The worst case occurs when the list is in reverse order.
-    DONE: Memory usage: O(1), since the items are sorted in place."""
+    DONE: Best case running time: O(n log n). The best case occurs when the list is already sorted. 
+    Every element would be compared log n times due to balanced partitions producing even splits.
+    DONE: Worst case running time: O(n^2). The worst case occurs when the list is in reverse order. Then 
+    every element is compared to every other element n times, so there are n*n calls.
+    DONE: Memory usage: O(log n) for the recursive call stack (list roughly halved every time)."""
     # DONE: Check if high and low range bounds have default values (not given)
     if low is None:
         low = 0
     if high is None:
         high = len(items) - 1
-    # DONE: If list or range is so small it's already sorted (base case)
-    if high - low <= 1:
+    # DONE: If list is so small it's already sorted (base case)
+    if len(items) == 1:
         return items
     if low < high:
         # DONE: Partition items in-place around a pivot and get index of pivot
